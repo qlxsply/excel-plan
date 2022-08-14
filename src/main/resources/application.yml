@@ -1,0 +1,47 @@
+server:
+  port: 8080
+# springboot相关通用配置
+spring:
+  # 数据库连接池设置
+  datasource:
+    # 本地调试时，应该修改当前连接url，请勿提交至git
+    url: jdbc:mysql://192.168.3.201:8001/excel_plan?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&useLegacyDatetimeCode=false&useSSL=false&allowMultiQueries=true&nullCatalogMeansCurrent=true&allowPublicKeyRetrieval=true
+    username: root
+    password: asdfasdf
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      minimum-idle: 10
+      maximum-pool-size: 100
+      auto-commit: true
+      pool-name: HikariCP
+      idle-timeout: 10000
+      max-lifetime: 1800000
+      connection-timeout: 30000
+      connection-test-query: SELECT 1
+# mybatis-plus设置
+mybatis-plus:
+  # 全局配置
+  global-config:
+    banner: false
+    enable-sql-runner: false
+    db-config:
+      # 逻辑删除全局字段（默认无 设置会自动扫描实体字段）
+      logic-delete-field: del
+      # 逻辑删除全局值（默认 1、表示已删除）
+      logic-delete-value: 1
+      # 逻辑未删除全局值（默认 0、表示未删除）
+      logic-not-delete-value: 0
+  # 自定义mapper xml文件所在位置
+  mapper-locations: classpath*:/mapper/**/*.xml
+  configuration:
+    # 开启自动驼峰命名规则（camel case）映射
+    map-underscore-to-camel-case: true
+    # 关闭一级缓存
+    local-cache-scope: statement
+    # 关闭二级缓存
+    cache-enabled: false
+    # 查询结果为null时，是否调用set方法
+    call-setters-on-nulls: false
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+

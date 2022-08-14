@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.avalon.excelplan.mapper.OrderMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.avalon.excelplan.entity.po.Order">
+        <id column="id" property="id" />
+        <result column="order_code" property="orderCode" />
+        <result column="order_type" property="orderType" />
+        <result column="buy_user" property="buyUser" />
+        <result column="pay_type" property="payType" />
+        <result column="pay_status" property="payStatus" />
+        <result column="amount" property="amount" />
+        <result column="order_status" property="orderStatus" />
+        <result column="create_time" property="createTime" />
+        <result column="pay_time" property="payTime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, order_code, order_type, buy_user, pay_type, pay_status, amount, order_status, create_time, pay_time
+    </sql>
+
+</mapper>

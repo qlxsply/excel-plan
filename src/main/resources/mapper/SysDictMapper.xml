@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.avalon.excelplan.mapper.SysDictMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.avalon.excelplan.entity.po.SysDictEntity">
+        <id column="id" property="id"/>
+        <result column="parent_id" property="parentId"/>
+        <result column="dict_group" property="dictGroup"/>
+        <result column="dict_code" property="dictCode"/>
+        <result column="dict_type" property="dictType"/>
+        <result column="dict_desc" property="dictDesc"/>
+        <result column="seq" property="seq"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, parent_id, dict_group, dict_code, dict_type, dict_desc, seq
+    </sql>
+
+    <select id="selectForUpdateByGroup" resultMap="BaseResultMap" parameterType="string">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_dict
+        where `dict_group` = #{dictGroup} for update;
+    </select>
+
+</mapper>
