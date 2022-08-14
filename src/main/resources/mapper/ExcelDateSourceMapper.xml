@@ -2,8 +2,30 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.avalon.excelplan.mapper.ExcelDateSourceMapper">
 
-    <select id="tableList">
+    <select id="tableList" resultType="com.avalon.excelplan.entity.po.TableInfo">
         select
+        `table_name` as tableName,
+        table_type as tableType,
+        engine as engine,
+        version as version,
+        row_format as rowFormat,
+        table_comment as tableComment
+        from information_schema.`tables` WHERE table_schema = #{schemeName}
+    </select>
+
+    <select id="columnList" resultType="com.avalon.excelplan.entity.po.ColumnInfo">
+        select
+        `table_name` as tableName,
+    `column_name` as columnName,
+    ordinal_position as ordinalPosition,
+    column_default as columnDefault,
+     is_nullable as isNullable,
+    data_type as dataType,
+     numeric_precision as numericPrecision,
+    numeric_scale as numericScale,
+     column_key as columnKey,
+      column_comment as columnComment
+        from information_schema.`columns` where table_schema = #{schemeName} and table_name = #{tableName} order by ordinal_position asc
     </select>
 
 

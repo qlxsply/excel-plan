@@ -1,9 +1,14 @@
 package com.avalon.excelplan.mapper;
 
-import java.util.Map;
+import com.avalon.excelplan.entity.po.ColumnInfo;
+import com.avalon.excelplan.entity.po.TableInfo;
+
+import java.util.List;
 
 public interface ExcelDateSourceMapper {
 
-    Map<String,String> tableList();
+    List<TableInfo> tableList(String schemeName);
+
+    List<ColumnInfo> columnList(String schemeName, String tableName);
 
 }
